@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { projectsData } from '../../data/projectsData'
 import { HiArrowRight } from "react-icons/hi";
-
+import ProjectCard from './ProjectCard';
 import './Projects.css'
 import SingleProject from './SingleProject/SingleProject';
 
@@ -16,8 +16,9 @@ function Projects() {
     
     const useStyles = makeStyles(() => ({
         viewAllBtn : {
-            color: theme.tertiary, 
+            color: theme.secondary70, 
             backgroundColor: theme.primary,
+            padding: '0.5rem',
             transition: 'color 0.2s',
             "&:hover": {
                 color: theme.secondary, 
@@ -48,26 +49,28 @@ function Projects() {
             {projectsData.length > 0 && (
                 <div className="projects" id="projects" style={{backgroundColor: theme.secondary}}>
                     <div className="projects--header">
-                        <h1 style={{color: theme.primary}}>Projects</h1>
+                        <h1 style={{color: theme.primary}} className='font-bold'>My Work</h1>
                     </div>
                     <div className="projects--body">
-                        <div className="projects--bodyContainer">
-                            {projectsData.slice(0, 3).map(project => (
-                                <SingleProject
-                                    theme={theme}
-                                    key={project.id}
-                                    id={project.id}
-                                    name={project.projectName}
-                                    desc={project.projectDesc}
-                                    tags={project.tags}
-                                    code={project.code}
-                                    demo={project.demo}
-                                    image={project.image}
-                                />
+                        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 items-start">
+                            {projectsData.slice(0, 8).map(project => (
+                                <ProjectCard
+                                theme={theme}
+                                key={project.id}
+                                id={project.id}
+                                project={project}
+                            />
                             ))}
                         </div> 
-
-                        {projectsData.length > 3 && (
+                        <div className="projects--viewAll">
+                                <Link href='https://www.youtube.com/@arshifatima15'>
+                                    <button className={classes.viewAllBtn}>
+                                        View All
+                                        <HiArrowRight className={classes.viewArr} />
+                                    </button>
+                                </Link>
+                        </div>
+                        {/* {projectsData.length > 3 && (
                             <div className="projects--viewAll">
                                 <Link to="/projects">
                                     <button className={classes.viewAllBtn}>
@@ -76,7 +79,7 @@ function Projects() {
                                     </button>
                                 </Link>
                             </div>
-                        )}
+                        )} */}
                     </div>
                 </div>
             )}

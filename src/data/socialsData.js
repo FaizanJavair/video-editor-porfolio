@@ -1,7 +1,5 @@
 export const socialsData = {
-    facebook: 'https://www.facebook.com/',
-    linkedIn: 'https://www.linkedin.com/in',
-    instagram: 'https://www.instagram.com/',
-    twitter: 'https://twitter.com/', 
-    youtube: 'https://youtube.com/'
+    linkedIn: 'https://www.linkedin.com/in/arshi-fatima-9b48a8296/',
+    twitter: 'https://twitter.com/ArshiFatima15', 
+    youtube: 'https://www.youtube.com/channel/UCEZRHMKa3k3-No-i0wqBXFg'
 }

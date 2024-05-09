@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { Snackbar, IconButton, SnackbarContent } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import axios from 'axios';
@@ -26,7 +26,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 import { socialsData } from '../../data/socialsData';
 import { contactsData } from '../../data/contactsData';
 import './Contacts.css';
-
+import emailjs from '@emailjs/browser';
 function Contacts() {
     const [open, setOpen] = useState(false);
 
@@ -36,7 +36,7 @@ function Contacts() {
 
     const [success, setSuccess] = useState(false);
     const [errMsg, setErrMsg] = useState('');
-
+    const form  = useRef()
     const { theme } = useContext(ThemeContext);
 
     const handleClose = (event, reason) => {
@@ -135,21 +135,42 @@ function Contacts() {
         if (name && email && message) {
             if (isEmail(email)) {
                 const responseData = {
-                    name: name,
-                    email: email,
+                    user_name: name,
+                    user_email: email,
                     message: message,
                 };
-
-                axios.post(contactsData.sheetAPI, responseData).then((res) => {
-                    console.log('success');
+                emailjs
+                .sendForm('service_afet663', 'template_okpkcxi', form.current, {
+                    publicKey: 'XNiNQhDP2gsZt4BLT',
+                })
+                .then(
+                    () => {
+                    console.log('SUCCESS!');
                     setSuccess(true);
-                    setErrMsg('');
+                    setErrMsg('Message Sent!');
 
                     setName('');
                     setEmail('');
                     setMessage('');
-                    setOpen(false);
-                });
+                    setOpen(true);
+              
+                    },
+                    (error) => {
+                    console.log('FAILED...', error.text);
+                    setErrMsg('Something Went Wrong');
+                    setOpen(true);
+                    },
+                );
+                // axios.post(contactsData.email, responseData).then((res) => {
+                //     console.log('success');
+                //     setSuccess(true);
+                //     setErrMsg('');
+
+                //     setName('');
+                //     setEmail('');
+                //     setMessage('');
+                //     setOpen(false);
+                // });
             } else {
                 setErrMsg('Invalid email');
                 setOpen(true);
@@ -167,42 +188,42 @@ function Contacts() {
             style={{ backgroundColor: theme.secondary }}
         >
             <div className='contacts--container'>
-                <h1 style={{ color: theme.primary }}>Contacts</h1>
+                <h1 style={{ color: theme.primary }} className='font-bold'>Let's Work Together!</h1>
                 <div className='contacts-body'>
                     <div className='contacts-form'>
-                        <form onSubmit={handleContactForm}>
+                        <form ref={form} onSubmit={handleContactForm}>
                             <div className='input-container'>
-                                <label htmlFor='Name' className={classes.label}>
+                                <label htmlFor='user_name' className={classes.label}>
                                     Name
                                 </label>
                                 <input
-                                    placeholder='John Doe'
+                                    placeholder='Enter Your Name'
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     type='text'
-                                    name='Name'
+                                    name='user_name'
                                     className={`form-input ${classes.input}`}
                                 />
                             </div>
                             <div className='input-container'>
                                 <label
-                                    htmlFor='Email'
+                                    htmlFor='user_email'
                                     className={classes.label}
                                 >
                                     Email
                                 </label>
                                 <input
-                                    placeholder='John@doe.com'
+                                    placeholder='Enter Your Email'
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     type='email'
-                                    name='Email'
+                                    name='user_email'
                                     className={`form-input ${classes.input}`}
                                 />
                             </div>
                             <div className='input-container'>
                                 <label
-                                    htmlFor='Message'
+                                    htmlFor='message'
                                     className={classes.label}
                                 >
                                     Message
@@ -212,7 +233,7 @@ function Contacts() {
                                     value={message}
                                     onChange={(e) => setMessage(e.target.value)}
                                     type='text'
-                                    name='Message'
+                                    name='message'
                                     className={`form-message ${classes.message}`}
                                 />
                             </div>
@@ -292,7 +313,7 @@ function Contacts() {
                                 {contactsData.email}
                             </p>
                         </a>
-                        <a
+                        {/* <a
                             href={`tel:${contactsData.phone}`}
                             className='personal-details'
                         >
@@ -302,7 +323,7 @@ function Contacts() {
                             <p style={{ color: theme.tertiary }}>
                                 {contactsData.phone}
                             </p>
-                        </a>
+                        </a> */}
                         <div className='personal-details'>
                             <div className={classes.detailsIcon}>
                                 <HiOutlineLocationMarker />

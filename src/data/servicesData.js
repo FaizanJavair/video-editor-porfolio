@@ -1,26 +1,31 @@
 /* eslint-disable */
-import { BiShoppingBag, BiPencil } from "react-icons/bi";
+import { BiPencil, BiPaint, BiPhotoAlbum, BiPolygon } from "react-icons/bi";
 import { BsCodeSlash, BsClipboardData } from "react-icons/bs";
-import { AiOutlineMail, AiFillAudio } from "react-icons/ai";
-import { FaInternetExplorer,  FaChalkboardTeacher, FaCameraRetro, FaPinterest, FaVideo, FaTabletAlt, FaRegNewspaper } from "react-icons/fa";
+import { AiOutlineScissor, AiOutlineBgColors, AiFillPicture, AiFillYoutube } from "react-icons/ai";
+import { FaVideo, FaRegNewspaper,  FaFileAudio } from "react-icons/fa";
 
  
 
 export const servicesData = [
-    // {
-    //     id: 1,
-    //     title: 'Marketing',
-    //     icon: <BiShoppingBag/>
-    // },
+    {
+        id: 1,
+        title: 'Video Editing',
+        icon: <FaVideo/>
+    },
     {
         id: 2,
-        title: 'Content Writing',
-        icon: <BiPencil /> 
+        title: 'Video Trimming',
+        icon: <AiOutlineScissor /> 
     },
     {
         id: 3,
-        title: 'Email Marketing',
-        icon: <AiOutlineMail />
+        title: 'Color Correction',
+        icon: <BiPaint /> 
+    },
+    {
+        id: 4,
+        title: 'Content Writing',
+        icon: <BiPencil />
     },
     // {
     //     id: 4,
@@ -35,13 +40,13 @@ export const servicesData = [
 
     {
         id: 6,
-        title: 'Web Design',
-        icon: <BsCodeSlash />
+        title: 'Photo Editing',
+        icon: <BiPhotoAlbum />
     },
     {
         id: 7,
-        title: 'Photography',
-        icon: <FaCameraRetro />
+        title: 'Audio Editing',
+        icon: <FaFileAudio />
     },
     // {
     //     id: 8,
@@ -50,24 +55,20 @@ export const servicesData = [
     // }, 
     {
         id: 9,
-        title: 'Video Editing',
-        icon: <FaVideo />
+        title: 'Thumbnail Editing',
+        icon: <AiFillPicture />
     },
-    // {
-    //     id: 10,
-    //     title: 'Data Entry', 
-    //     icon: <BsClipboardData />
-    // },
     {
-        id: 11,
-        title: 'Ebook Writing',
-        icon: <FaTabletAlt />
+        id: 10,
+        title: 'Logo Creation', 
+        icon: <BiPolygon />
     },
-    // {
-    //     id: 12,
-    //     title: 'Audio Transcription',
-    //     icon: <AiFillAudio />
-    // },
+   
+    {
+        id: 12,
+        title: 'YouTube Studio',
+        icon: <AiFillYoutube />
+    },
     {
         id: 13,
         title: 'Blog Posting',

@@ -12,20 +12,20 @@ function Skills() {
     const { theme } = useContext(ThemeContext);
 
     const skillBoxStyle = {
-        backgroundColor: theme.secondary,
-        boxShadow: `0px 0px 30px ${theme.primary30}`
+        backgroundColor: theme.primary400,
+        boxShadow: `0px 0px 20px ${theme.primary30}`
     }
 
     return (
         <div className="skills" style={{backgroundColor: theme.secondary}}>
             <div className="skillsHeader">
-                <h2 style={{color: theme.primary}}>Skills</h2>
+                <h2 style={{color: theme.primary}} className='font-bold'>Skills</h2>
             </div>
             <div className="skillsContainer">
                 <div className="skill--scroll">
                     <Marquee 
                         gradient={false} 
-                        speed={80} 
+                        speed={60} 
                         pauseOnHover={true}
                         pauseOnClick={true} 
                         delay={0}
@@ -35,7 +35,7 @@ function Skills() {
                         {skillsData.map((skill, id) => (
                             <div className="skill--box" key={id} style={skillBoxStyle}>
                                 <img src={skillsImage(skill)} alt={skill} />
-                                <h3 style={{color: theme.tertiary}}>
+                                <h3 style={{color: theme.secondary}}>
                                     {skill}
                                 </h3>
                             </div>
